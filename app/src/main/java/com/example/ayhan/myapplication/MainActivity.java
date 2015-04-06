@@ -1,25 +1,25 @@
 package com.example.ayhan.myapplication;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.ayhan.myapplication.pos.PosApi;
+import com.example.ayhan.myapplication.ui.MyLoginFragment;
 
 
 public class MainActivity extends ActionBarActivity
@@ -29,7 +29,26 @@ public class MainActivity extends ActionBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    protected void addFragment(@IdRes int containerViewId,
+                               @NonNull Fragment fragment,
+                               @NonNull String fragmentTag) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(containerViewId, fragment, fragmentTag)
+                .disallowAddToBackStack()
+                .commit();
+    }
 
+    protected void replaceFragment(@IdRes int containerViewId,
+                                   @NonNull Fragment fragment,
+                                   @NonNull String fragmentTag,
+                                   @Nullable String backStackStateName) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(containerViewId, fragment, fragmentTag)
+                .addToBackStack(backStackStateName)
+                .commit();
+    }
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
@@ -48,6 +67,14 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        if (savedInstanceState == null) {
+            MyLoginFragment mf = new MyLoginFragment();
+            mf.setArguments(getIntent().getExtras());
+            replaceFragment(R.id.container,mf,"login", null);
+        }
+                // add
+
     }
 
     @Override
@@ -83,14 +110,14 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+/*        if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
 
             restoreActionBar();
             return true;
-        }
+        }*/
         return super.onCreateOptionsMenu(menu);
     }
 
