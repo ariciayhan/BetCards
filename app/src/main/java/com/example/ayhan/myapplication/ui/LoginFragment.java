@@ -40,7 +40,26 @@ import com.example.ayhan.myapplication.pos.PosApi;
  */
 public class LoginFragment extends Fragment {
 
+    OnLoginListener mLoginCallback;
 
+    // Container Activity must implement this interface
+    public interface OnLoginListener {
+        public void onLoginSuccess();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mLoginCallback = (OnLoginListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -221,10 +240,10 @@ public class LoginFragment extends Fragment {
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+
                 PosApi p = new PosApi();
                 return p.login(mEmail,mPassword);
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 return false;
             }
 
@@ -237,7 +256,7 @@ public class LoginFragment extends Fragment {
             showProgress(false);
 
             if (success) {
-                getActivity().finish();
+                mLoginCallback.onLoginSuccess();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();

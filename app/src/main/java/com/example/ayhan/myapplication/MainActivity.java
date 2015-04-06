@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,8 @@ import com.example.ayhan.myapplication.ui.MyLoginFragment;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks,
+LoginFragment.OnLoginListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -130,6 +132,11 @@ public class MainActivity extends ActionBarActivity
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onLoginSuccess() {
+        Log.d("TAG", "LoginSucces on Main Activity");
     }
 
     /**
