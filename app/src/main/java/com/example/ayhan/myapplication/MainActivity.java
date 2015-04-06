@@ -19,6 +19,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.Button;
 
 import com.example.ayhan.myapplication.pos.PosApi;
+import com.example.ayhan.myapplication.ui.LoginFragment;
 import com.example.ayhan.myapplication.ui.MyLoginFragment;
 
 
@@ -69,7 +70,7 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
         if (savedInstanceState == null) {
-            MyLoginFragment mf = new MyLoginFragment();
+            LoginFragment mf = new LoginFragment();
             mf.setArguments(getIntent().getExtras());
             replaceFragment(R.id.container,mf,"login", null);
         }
