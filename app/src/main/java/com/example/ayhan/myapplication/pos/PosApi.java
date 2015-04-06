@@ -33,7 +33,7 @@ public class PosApi {
 
     PosSession session;
 
-    public void login(String username, String password){
+    public boolean login(String username, String password){
         String loginXML;
         String language = "en";
 
@@ -50,8 +50,8 @@ public class PosApi {
         try {
 
             String jsonResponse = requestJSON("Authentication.svc/Login", loginXML, API_URL, headers);
-            Log.d(TAG, jsonResponse);
-
+            session = parseSession(jsonResponse);
+            return true;
             //loginResponse = PosImpl_V3.makeLoginResponse(jsonResponse);
 
             // TODO: need to be improved
@@ -64,6 +64,20 @@ public class PosApi {
         } finally {
             //return loginResponse;
         }
+        return false;
+
+    }
+
+    private PosSession parseSession(String loginResponseStr){
+        PosSession session = new PosSession();
+        try {
+            JSONObject loginRespJson = new JSONObject(loginResponseStr);
+            session.setSsoTokenString(loginRespJson.getString("ssoToken"));
+            session.updateTokens(loginRespJson.getString("userToken"),loginRespJson.getString("sessionToken"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return session;
     }
 
 
