@@ -31,7 +31,7 @@ public class PosApi {
     public static final String API_URL = "https://api.bwin.com/v3/";
     //public static final String API_URL = "http://www.google.com";
 
-    PosSession session;
+
 
     public boolean login(String username, String password){
         String loginXML;
@@ -50,9 +50,8 @@ public class PosApi {
         try {
 
             String jsonResponse = requestJSON("Authentication.svc/Login", loginXML, API_URL, headers);
-            session = parseSession(jsonResponse);
+            updateSession(jsonResponse);
             return true;
-            //loginResponse = PosImpl_V3.makeLoginResponse(jsonResponse);
 
             // TODO: need to be improved
             //loginResponse.getUserData().setUserName(username);
@@ -68,16 +67,16 @@ public class PosApi {
 
     }
 
-    private PosSession parseSession(String loginResponseStr){
-        PosSession session = new PosSession();
+    private void updateSession(String loginResponseStr){
+
         try {
             JSONObject loginRespJson = new JSONObject(loginResponseStr);
-            session.setSsoTokenString(loginRespJson.getString("ssoToken"));
-            session.updateTokens(loginRespJson.getString("userToken"),loginRespJson.getString("sessionToken"));
+            PosSession.instance().setSsoTokenString(loginRespJson.getString("ssoToken"));
+            PosSession.instance().updateTokens(loginRespJson.getString("userToken"),loginRespJson.getString("sessionToken"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return session;
+
     }
 
 

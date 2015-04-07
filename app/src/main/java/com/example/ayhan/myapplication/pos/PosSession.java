@@ -2,8 +2,18 @@ package com.example.ayhan.myapplication.pos;
 
 import android.util.Log;
 
+import java.util.Timer;
+
 public class PosSession  implements IPosSession{
     private static final String TAG = "PosSession";
+    private final static int TIMER_INTERVAL = 5 * 60 * 1000/*Milliseconds*/;
+    private static PosSession instance = new PosSession();
+    private Timer mSessionTimer;
+
+    public static PosSession instance()
+    {
+        return instance;
+    }
 
     private PosToken sessionToken;
     private PosToken userToken;

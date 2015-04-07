@@ -40,6 +40,7 @@ import com.example.ayhan.myapplication.pos.PosApi;
  */
 public class LoginFragment extends Fragment {
 
+    private static final String TAG = PosApi.class.getName();
     OnLoginListener mLoginCallback;
 
     // Container Activity must implement this interface
@@ -97,6 +98,9 @@ public class LoginFragment extends Fragment {
                 return false;
             }
         });
+
+        mEmailView.setText("osbwin");
+        mPasswordView.setText("Alphatwo2");
 
         Button mEmailSignInButton = (Button) rootView.findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
