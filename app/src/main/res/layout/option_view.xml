@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/img1Icon"
-        android:src="@drawable/team_one"
+        android:src="@drawable/abc_ic_search_api_mtrl_alpha"
          />
 
     <TextView
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/img2Icon"
-            android:src="@drawable/team_two"
+            android:src="@drawable/abc_ab_share_pack_mtrl_alpha"
             />
 
         <TextView

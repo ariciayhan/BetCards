@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.example.ayhan.myapplication.pos.PosApi;
 import com.example.ayhan.myapplication.pos.PosSession;
-import com.example.ayhan.myapplication.ui.BetCardsFragment;
+//import com.example.ayhan.myapplication.ui.BetCardsFragment;
 import com.example.ayhan.myapplication.ui.LoginFragment;
 import com.example.ayhan.myapplication.ui.MyLoginFragment;
 
@@ -100,7 +100,7 @@ LoginFragment.OnLoginListener{
     public void onLoginSuccess() {
 
         Log.d(TAG, "LoginSucces on Main Activity");
-        replaceFragment(R.id.container, BetCardsFragment.newInstance(), "Main", null);
+        //replaceFragment(R.id.container, BetCardsFragment.newInstance(), "Main", null);
     }
 
 
