@@ -39,22 +39,21 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
         Log.d("BetCards", "OnCreateView");
 
         flingContainer = (SwipeFlingAdapterView) rootView.findViewById(R.id.swipeadapter);
-
+        Log.d(TAG, "Before EventAdapter");
         betAdapter = new EventAdapter(getActivity(), R.layout.option_view, new ArrayList<Event>());
+        Log.d(TAG, " After EventAdapter");
         (new AsyncListViewLoader()).execute();
 
 
         //flingContainer.setAdapter(arrayAdapter);
-        flingContainer.setAdapter(betAdapter);
+
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
-                //al.remove(0);
                 betAdapter.pop();
                 betAdapter.notifyDataSetChanged();
-                //arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -74,7 +73,7 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
                 tempObject.Participant2 = "Blue".concat(String.valueOf(i));
                 betAdapter.push(tempObject);
                 betAdapter.notifyDataSetChanged();*/
-                Log.d("LIST", "notified");
+                Log.d(TAG, "onAdapterAboutToEmpty");
                 i++;
             }
 
@@ -115,9 +114,11 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
         @Override
         protected void onPostExecute(List<Event> result) {
             super.onPostExecute(result);
+            Log.d(TAG, "onPostExecute Async Task" + result.size());
             dialog.dismiss();
             betAdapter.setItemList(result);
             betAdapter.notifyDataSetChanged();
+            flingContainer.setAdapter(betAdapter);
         }
 
         @Override
@@ -130,11 +131,13 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
         @Override
         protected List<Event> doInBackground(String... params) {
             List<Event> resultss = new ArrayList<>();
-
+            Log.d(TAG, "doInBackground...");
             try {
 
                 BetSearcher b = new BetSearcher();
                 resultss = b.SearchBets();
+
+                Log.d(TAG, "Before return doInBackground");
                 return resultss;
                // Log.d("Tag", "Results count" + resultss.size());
              /*   new ArrayList<EventR>();
