@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/txt1Title"
-        android:textSize="40sp"
+        android:textSize="20sp"
         android:textColor="@android:color/white"
         android:background="#E339"
         android:gravity="center"
@@ -58,7 +58,7 @@
 
         <TextView
             android:id="@+id/txt2Title"
-            android:textSize="40sp"
+            android:textSize="20sp"
             android:textColor="@android:color/white"
             android:background="#ee919699"
             android:gravity="center"
