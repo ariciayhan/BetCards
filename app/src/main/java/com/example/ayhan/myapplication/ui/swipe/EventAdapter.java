@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ayhan.myapplication.R;
+import com.example.ayhan.myapplication.pos.sports.Event;
 
 import java.util.List;
 
@@ -52,8 +53,8 @@ public class EventAdapter extends ArrayAdapter<Event> {
         }
 
         Event option = objects.get(position);
-        holder.txt1Title.setText(option.Participant1);
-        holder.txt2Title.setText(option.Participant2);
+        holder.txt1Title.setText(option.getParticipants()[0]);
+        holder.txt2Title.setText(option.getParticipants()[0]);
         //holder.imgIcon.setImageResource(weather.icon);
 
         return row;

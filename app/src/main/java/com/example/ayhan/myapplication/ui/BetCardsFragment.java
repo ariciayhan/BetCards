@@ -16,15 +16,16 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.ayhan.myapplication.R;
-import com.example.ayhan.myapplication.ui.swipe.Event;
+import com.example.ayhan.myapplication.pos.BetSearcher;
+import com.example.ayhan.myapplication.pos.sports.Event;
+import com.example.ayhan.myapplication.ui.swipe.EventR;
 import com.example.ayhan.myapplication.ui.swipe.EventAdapter;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BetCardsFragment extends android.support.v4.app.Fragment {
-
+    private static final String TAG = BetCardsFragment.class.getName();
 
     private EventAdapter betAdapter;
     private int i;
@@ -40,7 +41,7 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
         flingContainer = (SwipeFlingAdapterView) rootView.findViewById(R.id.swipeadapter);
 
         betAdapter = new EventAdapter(getActivity(), R.layout.option_view, new ArrayList<Event>());
-        (new AsyncListViewLoader()).execute("dummyparam");
+        (new AsyncListViewLoader()).execute();
 
 
         //flingContainer.setAdapter(arrayAdapter);
@@ -68,11 +69,11 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
-                Event tempObject = new Event();
+               /* EventR tempObject = new EventR();
                 tempObject.Participant1 = "Red".concat(String.valueOf(i));
                 tempObject.Participant2 = "Blue".concat(String.valueOf(i));
                 betAdapter.push(tempObject);
-                betAdapter.notifyDataSetChanged();
+                betAdapter.notifyDataSetChanged();*/
                 Log.d("LIST", "notified");
                 i++;
             }
@@ -128,42 +129,45 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
 
         @Override
         protected List<Event> doInBackground(String... params) {
-            List<Event> result = new ArrayList<Event>();
+            List<Event> resultss = new ArrayList<>();
 
             try {
-               // URL u = new URL(params[0]);
-                Thread.sleep(5000);
-                new ArrayList<Event>();
-                Event tempObject = new Event();
+
+                BetSearcher b = new BetSearcher();
+                resultss = b.SearchBets();
+                return resultss;
+               // Log.d("Tag", "Results count" + resultss.size());
+             /*   new ArrayList<EventR>();
+                EventR tempObject = new EventR();
                 tempObject.Participant2 = "Blue";
                 tempObject.Participant1 = "Red";
                 result.add(tempObject);
-                tempObject = new Event();
+                tempObject = new EventR();
                 tempObject.Participant2 = "Besiktas";
                 tempObject.Participant1 = "Galatasaray";
                 result.add(tempObject);
-                tempObject = new Event();
+                tempObject = new EventR();
                 tempObject.Participant2 = "Barcelona";
                 tempObject.Participant1 = "Sevilla";
                 result.add(tempObject);
-                tempObject = new Event();
+                tempObject = new EventR();
                 tempObject.Participant2 = "FC Bayer";
                 tempObject.Participant1 = "BVB";
                 result.add(tempObject);
-                tempObject = new Event();
+                tempObject = new EventR();
                 tempObject.Participant2 = "Blue SMT";
                 tempObject.Participant1 = "Red SMT";
                 result.add(tempObject);
-                tempObject = new Event();
+                tempObject = new EventR();
                 tempObject.Participant2 = "L";
-                tempObject.Participant1 = "R";
+                tempObject.Participant1 = "R";*/
 
-                return result;
+
             }
-            catch(Throwable t) {
-                t.printStackTrace();
+            catch(Exception e) {
+                Log.d(TAG, e.getMessage());
             }
-            return null;
+            return resultss;
         }
 
 

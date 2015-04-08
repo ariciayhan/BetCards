@@ -2,7 +2,8 @@ package com.example.ayhan.myapplication.util;
 
 import android.os.Build;
 
-import com.example.ayhan.myapplication.parsers.ResponseParser;
+
+import com.example.ayhan.myapplication.pos.sports.jackson.ResponseParser;
 import com.turbomanage.httpclient.BasicRequestHandler;
 import com.turbomanage.httpclient.ConsoleRequestLogger;
 import com.turbomanage.httpclient.HttpRequestException;

@@ -5,7 +5,11 @@ import android.test.ApplicationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
+import com.example.ayhan.myapplication.pos.BetSearcher;
 import com.example.ayhan.myapplication.pos.PosApi;
+import com.example.ayhan.myapplication.pos.sports.Event;
+
+import java.util.List;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -23,10 +27,18 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         getContext();
     }
 
-    @SmallTest
+  /*  @SmallTest
     public void testLogin() {
         PosApi p = new PosApi();
         p.login("osbwin", "Alphatwo2");
         System.out.println("fsewewfwfe");
+    }*/
+
+
+    @SmallTest
+    public void testSearchEvents() {
+        BetSearcher bs = new BetSearcher();
+        List<Event> result = bs.SearchBets();
+        assertTrue(result.size() > 0);
     }
 }
