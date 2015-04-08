@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Adapter;
@@ -301,6 +302,7 @@ public class SwipeFlingAdapterView extends BaseFlingAdapterView {
     private class AdapterDataSetObserver extends DataSetObserver {
         @Override
         public void onChanged() {
+            Log.d("SwipeFlingAdapter", "DataSet On Changed");
             requestLayout();
         }
 

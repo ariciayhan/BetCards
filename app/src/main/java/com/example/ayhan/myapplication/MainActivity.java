@@ -73,7 +73,8 @@ LoginFragment.OnLoginListener{
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
         if (savedInstanceState == null && !PosSession.instance().isValidSessionToken()) {
-            LoginFragment mf = new LoginFragment();
+           // LoginFragment mf = new LoginFragment();
+            BetCardsFragment mf = new BetCardsFragment();
             mf.setArguments(getIntent().getExtras());
             replaceFragment(R.id.container,mf,"login", null);
         }

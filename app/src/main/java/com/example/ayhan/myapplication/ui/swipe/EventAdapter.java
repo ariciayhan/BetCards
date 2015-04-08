@@ -20,11 +20,10 @@ import java.util.List;
 public class EventAdapter extends ArrayAdapter<Event> {
     Context context;
     int layoutResourceId;
-    List<Event> objects = null;
+
 
     public EventAdapter(Context context, int resource, List<Event> objects) {
         super(context, resource, objects);
-        this.objects = objects;
         this.layoutResourceId = resource;
         this.context = context;
     }
@@ -52,25 +51,23 @@ public class EventAdapter extends ArrayAdapter<Event> {
             holder = (OptionHolder)row.getTag();
         }
 
-        Event option = objects.get(position);
+        Event option = getItem(position);
         holder.txt1Title.setText(option.getParticipants()[0]);
-        holder.txt2Title.setText(option.getParticipants()[0]);
+        holder.txt2Title.setText(option.getParticipants()[1]);
         //holder.imgIcon.setImageResource(weather.icon);
 
         return row;
     }
 
-    public void setItemList(List<Event> itemList) {
-        this.objects = itemList;
-    }
-
     public void pop(){
-        objects.remove(0);
+        remove(getItem(0));
     }
 
     public void push(Event event){
-        objects.add(event);
+        insert(event, 0);
+
     }
+
 
 
     static class OptionHolder

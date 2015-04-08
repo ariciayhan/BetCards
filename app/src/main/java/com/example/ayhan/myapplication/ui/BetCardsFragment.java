@@ -41,6 +41,7 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
         flingContainer = (SwipeFlingAdapterView) rootView.findViewById(R.id.swipeadapter);
         Log.d(TAG, "Before EventAdapter");
         betAdapter = new EventAdapter(getActivity(), R.layout.option_view, new ArrayList<Event>());
+        flingContainer.setAdapter(betAdapter);
         Log.d(TAG, " After EventAdapter");
         (new AsyncListViewLoader()).execute();
 
@@ -116,9 +117,9 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
             super.onPostExecute(result);
             Log.d(TAG, "onPostExecute Async Task" + result.size());
             dialog.dismiss();
-            betAdapter.setItemList(result);
+            betAdapter.addAll(result);
             betAdapter.notifyDataSetChanged();
-            flingContainer.setAdapter(betAdapter);
+
         }
 
         @Override
