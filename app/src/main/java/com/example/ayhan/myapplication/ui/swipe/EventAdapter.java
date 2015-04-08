@@ -16,12 +16,12 @@ import java.util.List;
 /**
  * Created by ayhan on 22/03/15.
  */
-public class OptionAdapter extends ArrayAdapter<RedOrBlue> {
+public class EventAdapter extends ArrayAdapter<Event> {
     Context context;
     int layoutResourceId;
-    List<RedOrBlue> objects = null;
+    List<Event> objects = null;
 
-    public OptionAdapter(Context context, int resource, List<RedOrBlue> objects) {
+    public EventAdapter(Context context, int resource, List<Event> objects) {
         super(context, resource, objects);
         this.objects = objects;
         this.layoutResourceId = resource;
@@ -51,13 +51,26 @@ public class OptionAdapter extends ArrayAdapter<RedOrBlue> {
             holder = (OptionHolder)row.getTag();
         }
 
-        RedOrBlue option = objects.get(position);
-        holder.txt1Title.setText(option.RedTitle);
-        holder.txt2Title.setText(option.BlueTitle);
+        Event option = objects.get(position);
+        holder.txt1Title.setText(option.Participant1);
+        holder.txt2Title.setText(option.Participant2);
         //holder.imgIcon.setImageResource(weather.icon);
 
         return row;
     }
+
+    public void setItemList(List<Event> itemList) {
+        this.objects = itemList;
+    }
+
+    public void pop(){
+        objects.remove(0);
+    }
+
+    public void push(Event event){
+        objects.add(event);
+    }
+
 
     static class OptionHolder
     {

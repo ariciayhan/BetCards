@@ -22,9 +22,8 @@ import android.widget.TextView;
 
 import com.example.ayhan.myapplication.pos.PosApi;
 import com.example.ayhan.myapplication.pos.PosSession;
-//import com.example.ayhan.myapplication.ui.BetCardsFragment;
+import com.example.ayhan.myapplication.ui.BetCardsFragment;
 import com.example.ayhan.myapplication.ui.LoginFragment;
-import com.example.ayhan.myapplication.ui.MyLoginFragment;
 
 
 public class MainActivity extends ActionBarActivity
@@ -73,7 +72,7 @@ LoginFragment.OnLoginListener{
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null && !PosSession.instance().isValidSessionToken()) {
             LoginFragment mf = new LoginFragment();
             mf.setArguments(getIntent().getExtras());
             replaceFragment(R.id.container,mf,"login", null);
@@ -100,7 +99,7 @@ LoginFragment.OnLoginListener{
     public void onLoginSuccess() {
 
         Log.d(TAG, "LoginSucces on Main Activity");
-        //replaceFragment(R.id.container, BetCardsFragment.newInstance(), "Main", null);
+        replaceFragment(R.id.container, BetCardsFragment.newInstance(), "Main", null);
     }
 
 
