@@ -15,6 +15,7 @@ import com.example.ayhan.myapplication.R;
 import com.example.ayhan.myapplication.pos.sports.Event;
 import com.example.ayhan.myapplication.pos.sports.Game;
 import com.example.ayhan.myapplication.pos.sports.GameGroup;
+import com.example.ayhan.myapplication.util.Image.ImageLoader;
 
 import java.util.List;
 
@@ -24,12 +25,17 @@ import java.util.List;
 public class EventAdapter extends ArrayAdapter<Event> {
     Context context;
     int layoutResourceId;
+    public ImageLoader imageLoader;
 
 
     public EventAdapter(Context context, int resource, List<Event> objects) {
         super(context, resource, objects);
         this.layoutResourceId = resource;
         this.context = context;
+
+        // Create ImageLoader object to download and show image in list
+        // Call ImageLoader constructor to initialize FileCache
+        imageLoader = new ImageLoader(context.getApplicationContext());
     }
 
     @Override
@@ -44,7 +50,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
             holder = new OptionHolder();
             holder.img1Icon = (ImageView)row.findViewById(R.id.img1Icon);
-            holder.img1Icon = (ImageView)row.findViewById(R.id.img2Icon);
+            holder.img2Icon = (ImageView)row.findViewById(R.id.img2Icon);
             holder.txt1Title = (TextView)row.findViewById(R.id.txt1Title);
             holder.txt2Title = (TextView)row.findViewById(R.id.txt2Title);
             holder.txtInfo = (TextView)row.findViewById(R.id.txtInfo);
@@ -63,14 +69,23 @@ try {
     Event option = getItem(position);
     holder.txt1Title.setText(option.getParticipants()[0]);
     holder.txt2Title.setText(option.getParticipants()[1]);
+    ImageView image1 = holder.img1Icon;
+    ImageView image2 = holder.img2Icon;
+
+    //DisplayImage function from ImageLoader Class
+    imageLoader.DisplayImage("http://androidexample.com/media/webservice/LazyListView_images/image9.png", image1);
+    imageLoader.DisplayImage("http://androidexample.com/media/webservice/LazyListView_images/image6.png", image2);
+
     holder.txtInfo.setText(option.getRegionName() + "\\" + option.getEventShortName());
     holder.txtDate.setText(option.getStartTime().format3339(false));
     GameGroup gg = option.getGameGroups().get(0);
     Game game = option.getGameGroupByID(gg.getGroupID()).getListGames().get(0);
+
     if (game != null) {
         holder.radioOddOne.setText(game.getResults()[0].getFormattedOdds());
         holder.radioOddTwo.setText(game.getResults()[1].getFormattedOdds());
     }
+
 }catch(Exception e){
     Log.e("ADAPTER", e.toString());
 }
