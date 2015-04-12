@@ -15,7 +15,7 @@ import java.util.List;
  * Created by aariciogullari on 08.04.2015.
  */
 public class BetSearcher {
-    public static final String BETSEARCHURL = "http://en.mobileapi.bwinlabs.com/api/iphone/v2/events/main?partnerid=test&winninggames=true&topsport=true&page_size=30";
+    public static final String BETSEARCHURL = "http://en.mobileapi.bwinlabs.com/api/iphone/v2/events/main?partnerid=test&winninggames=true&sportid=4&topsport=true&page_size=30";
 
     public List<Event> SearchBets(){
 
