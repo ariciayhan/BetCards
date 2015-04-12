@@ -63,8 +63,8 @@ try {
     Event option = getItem(position);
     holder.txt1Title.setText(option.getParticipants()[0]);
     holder.txt2Title.setText(option.getParticipants()[1]);
-    holder.txtInfo.setText(option.getRegionName() + "-" + option.getEventShortName());
-    holder.txtDate.setText(option.getStartTime().format("MM/dd/yyyy HH:mm:ss"));
+    holder.txtInfo.setText(option.getRegionName() + "\\" + option.getEventShortName());
+    holder.txtDate.setText(option.getStartTime().format3339(false));
     GameGroup gg = option.getGameGroups().get(0);
     Game game = option.getGameGroupByID(gg.getGroupID()).getListGames().get(0);
     if (game != null) {
