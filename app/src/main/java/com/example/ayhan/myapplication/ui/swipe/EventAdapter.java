@@ -73,8 +73,8 @@ try {
     ImageView image2 = holder.img2Icon;
 
     //DisplayImage function from ImageLoader Class
-    imageLoader.DisplayImage("http://androidexample.com/media/webservice/LazyListView_images/image9.png", image1);
-    imageLoader.DisplayImage("http://androidexample.com/media/webservice/LazyListView_images/image6.png", image2);
+    imageLoader.DisplayImage("http://m.kingofthemoon.org/sportclubs/icons/1_fc_passau.png", image1);
+    imageLoader.DisplayImage("http://m.kingofthemoon.org/sportclubs/icons/1_fc_sand.png", image2);
 
     holder.txtInfo.setText(option.getRegionName() + "\\" + option.getEventShortName());
     holder.txtDate.setText(option.getStartTime().format3339(false));
