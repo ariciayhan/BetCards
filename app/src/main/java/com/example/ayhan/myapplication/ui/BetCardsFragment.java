@@ -40,7 +40,7 @@ public class BetCardsFragment extends android.support.v4.app.Fragment {
 
         flingContainer = (SwipeFlingAdapterView) rootView.findViewById(R.id.swipeadapter);
         Log.d(TAG, "Before EventAdapter");
-        betAdapter = new EventAdapter(getActivity(), R.layout.option_view, new ArrayList<Event>());
+        betAdapter = new EventAdapter(getActivity(), R.layout.bet_view, new ArrayList<Event>());
         flingContainer.setAdapter(betAdapter);
         Log.d(TAG, " After EventAdapter");
         (new AsyncListViewLoader()).execute();
