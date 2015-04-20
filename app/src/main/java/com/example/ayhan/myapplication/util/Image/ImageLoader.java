@@ -50,8 +50,14 @@ public class ImageLoader {
 
     // default image show in list (Before online image download)
     final int stub_id= R.drawable.team_one;
+    final int stub_id_two= R.drawable.team_two;
 
     public void DisplayImage(String url, ImageView imageView)
+    {
+        DisplayImage(url,imageView, stub_id);
+    }
+
+    public void DisplayImage(String url, ImageView imageView, int tempImage)
     {
         //Store image and url in Map
         imageViews.put(imageView, url);
@@ -70,7 +76,7 @@ public class ImageLoader {
             queuePhoto(url, imageView);
 
             //Before downloading image show default image
-            imageView.setImageResource(stub_id);
+            imageView.setImageResource(tempImage);
         }
     }
 

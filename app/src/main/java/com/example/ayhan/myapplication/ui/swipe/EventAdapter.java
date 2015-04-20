@@ -65,30 +65,30 @@ public class EventAdapter extends ArrayAdapter<Event> {
         {
             holder = (OptionHolder)row.getTag();
         }
-try {
-    Event option = getItem(position);
-    holder.txt1Title.setText(option.getParticipants()[0]);
-    holder.txt2Title.setText(option.getParticipants()[1]);
-    ImageView image1 = holder.img1Icon;
-    ImageView image2 = holder.img2Icon;
+        try {
+            Event option = getItem(position);
+            holder.txt1Title.setText(option.getParticipants()[0]);
+            holder.txt2Title.setText(option.getParticipants()[1]);
+            ImageView image1 = holder.img1Icon;
+            ImageView image2 = holder.img2Icon;
 
-    //DisplayImage function from ImageLoader Class
-    imageLoader.DisplayImage("http://m.kingofthemoon.org/sportclubs/icons/1_fc_passau.png", image1);
-    imageLoader.DisplayImage("http://m.kingofthemoon.org/sportclubs/icons/1_fc_sand.png", image2);
+            //DisplayImage function from ImageLoader Class
+            imageLoader.DisplayImage(getImageUrl(option.getParticipants()[0]), image1, R.drawable.team_one);
+            imageLoader.DisplayImage(getImageUrl(option.getParticipants()[1]), image2, R.drawable.team_two);
 
-    holder.txtInfo.setText(option.getRegionName() + "\\" + option.getEventShortName());
-    holder.txtDate.setText(option.getStartTime().format3339(false));
-    GameGroup gg = option.getGameGroups().get(0);
-    Game game = option.getGameGroupByID(gg.getGroupID()).getListGames().get(0);
+            holder.txtInfo.setText(option.getRegionName() + "\\" + option.getEventShortName());
+            holder.txtDate.setText(option.getStartTime().format3339(false));
+            GameGroup gg = option.getGameGroups().get(0);
+            Game game = option.getGameGroupByID(gg.getGroupID()).getListGames().get(0);
 
-    if (game != null) {
-        holder.radioOddOne.setText(game.getResults()[0].getFormattedOdds());
-        holder.radioOddTwo.setText(game.getResults()[1].getFormattedOdds());
-    }
+            if (game != null) {
+                holder.radioOddOne.setText(game.getResults()[0].getFormattedOdds());
+                holder.radioOddTwo.setText(game.getResults()[1].getFormattedOdds());
+            }
 
-}catch(Exception e){
-    Log.e("ADAPTER", e.toString());
-}
+        }catch(Exception e){
+            Log.e("ADAPTER", e.toString());
+        }
         //holder.imgIcon.setImageResource(weather.icon);
 
         return row;
@@ -103,7 +103,10 @@ try {
 
     }
 
+    private String getImageUrl(String teamName){
+        return String.format("http://m.kingofthemoon.org/sportclubs/icons/%s.png",teamName.toLowerCase().trim().replace(' ', '_'));
 
+    }
 
     static class OptionHolder
     {

@@ -3,80 +3,160 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:layout_width="300dp"
-    android:layout_height="300dp"
-    android:background="#fff">
+    android:layout_height="wrap_content">
 
-<LinearLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:weightSum="100">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:layout_weight="50"    >
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="230dp"
+        android:layout_weight="1"
+        card_view:cardCornerRadius="4dp"
+        android:elevation="2dp"
+        android:background="@drawable/myrect">
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal|top">
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:weightSum="2">
+                <TextView
+                    android:layout_column="0"
+                    android:gravity="left"
+                    android:id="@+id/txtInfo"
+                    android:textSize="10sp"
+                    android:textColor="@android:color/black"
+                    tools:text="Info"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left" />
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_column="1"
+                    android:id="@+id/txtDate"
+                    android:textSize="10sp"
+                    android:textColor="@android:color/black"
+                    android:gravity="right"
+                    android:paddingRight="10dip"
+                    tools:text="123456789"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:weightSum="2">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/img1Icon"
-        android:src="@drawable/abc_ic_search_api_mtrl_alpha"
-         />
+                <FrameLayout
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="130dp"
+                        android:id="@+id/img1Icon"
+                        android:src="@drawable/team_one"
+                        android:layout_gravity="center" />
+                    <View
+                        android:id="@+id/item_swipe_left_indicator"
+                        android:alpha="0"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="10dp"
+                        android:background="#ff3bff52" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="130dp"
+                        android:id="@+id/img2Icon"
+                        android:gravity="center"
+                        android:src="@drawable/team_two"
+                        android:layout_gravity="center" />
+                    <View
+                        android:id="@+id/item_swipe_right_indicator"
+                        android:alpha="0"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="10dp"
+                        android:background="#ff4bff9d" />
+                </FrameLayout>
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+                <TextView
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:id="@+id/txt1Title"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
+                    android:background="#E339"
+                    android:gravity="center"
+                    tools:text="test"
 
-    <TextView
-        android:id="@+id/txt1Title"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:background="#E339"
-        android:gravity="center"
-        tools:text="test"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:id="@+id/txt2Title"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/white"
+                    android:background="#ee919699"
+                    android:gravity="center"
+                    tools:text="team 2"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <View
-        android:id="@+id/item_swipe_left_indicator"
-        android:alpha="0"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_margin="10dp"
-        android:background="#ff3bff52" />
-</LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_weight="50"    >
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:gravity="center">
+                <RadioButton
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.30"
+                    android:id="@+id/radio1odd"
+                    android:layout_gravity="center" />
+                <RadioButton
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.30"
+                    android:id="@+id/radio2odd"
+                    android:layout_gravity="center" />
+            </TableRow>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/img2Icon"
-            android:src="@drawable/abc_ab_share_pack_mtrl_alpha"
-            />
-
-        <TextView
-            android:id="@+id/txt2Title"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:background="#ee919699"
-            android:gravity="center"
-            tools:text="team 2"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <View
-            android:id="@+id/item_swipe_right_indicator"
-            android:alpha="0"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_margin="10dp"
-            android:background="#ff4bff9d" />
-    </LinearLayout>
-</LinearLayout>
+        </TableLayout>
 
 
+
+    </android.support.v7.widget.CardView>
 
 
 
